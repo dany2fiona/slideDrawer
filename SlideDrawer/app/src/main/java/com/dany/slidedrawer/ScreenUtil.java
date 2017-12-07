@@ -5,9 +5,7 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 
 /**
- * @function 屏幕工具
- * @auther: Created by yinglan
- * @time: 16/3/16
+ * Created by dan.y
  */
 public class ScreenUtil {
 
