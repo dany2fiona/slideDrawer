@@ -33,6 +33,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -131,7 +132,6 @@ public class ScrollLayout extends FrameLayout {
     private OnScrollChangedListener onScrollChangedListener;
     private ContentScrollView mScrollView;
     private Handler handler = new Handler(){};
-    private boolean isMiddle = false;
 
 
     public ScrollLayout(Context context) {
@@ -411,8 +411,9 @@ public class ScrollLayout extends FrameLayout {
         return false;
     }
 
-    private void completeMove() {
+    private void completeMove() {//完成未达到位置的动作
         float closeValue = -((maxOffset - minOffset) * SCROLL_TO_CLOSE_OFFSET_FACTOR);
+        Log.d("dan.y","getScrollY():"+getScrollY()+",closeValue:"+closeValue);
         if (getScrollY() > closeValue) {
             scrollToClose();
         } else {
@@ -511,7 +512,6 @@ public class ScrollLayout extends FrameLayout {
 //        scrollTo(0, -maxOffset);
 //        currentInnerStatus = InnerStatus.OPENED;
 //        lastFlingStatus = Status.OPENED;
-        isMiddle = true;
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -535,7 +535,6 @@ public class ScrollLayout extends FrameLayout {
      * 初始化布局,退出,有动画。
      */
     public void setToExit(boolean isAnimate) {
-        isMiddle = false;
         if (!isSupportExit) return;
         if(isAnimate){
             handler.post(new Runnable() {
@@ -562,14 +561,6 @@ public class ScrollLayout extends FrameLayout {
         animators.playTogether(xTranslate, yTranslate);
 //        animators.addListener();
         animators.start();
-    }
-
-    public boolean isMiddle() {
-        return isMiddle;
-    }
-
-    public void setMiddle(boolean middle) {
-        isMiddle = middle;
     }
 
     public void setMinOffset(int minOffset) {

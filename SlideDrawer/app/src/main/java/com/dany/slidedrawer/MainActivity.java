@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         text_foot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mScrollLayout.isMiddle()){
+                if(mScrollLayout.getCurrentStatus() == ScrollLayout.Status.OPENED){
                     mScrollLayout.setToExit(true);
                 }else{
                     mScrollLayout.setToOpen();

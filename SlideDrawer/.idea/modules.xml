@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SlideDrawer.iml" filepath="$PROJECT_DIR$/SlideDrawer.iml" />
+      <module fileurl="file://E:\android-as\slideDrawer\SlideDrawer\SlideDrawer.iml" filepath="E:\android-as\slideDrawer\SlideDrawer\SlideDrawer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\android-as\slideDrawer\SlideDrawer\app\app.iml" filepath="E:\android-as\slideDrawer\SlideDrawer\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/scrolllayout/scrolllayout.iml" filepath="$PROJECT_DIR$/scrolllayout/scrolllayout.iml" />
+      <module fileurl="file://E:\android-as\slideDrawer\SlideDrawer\scrolllayout\scrolllayout.iml" filepath="E:\android-as\slideDrawer\SlideDrawer\scrolllayout\scrolllayout.iml" />
     </modules>
   </component>
 </project>
