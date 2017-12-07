@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/android"
+    tools:context=".MainActivity">
+
+    <com.dany.scrolllayout.ScrollLayout
+        android:id="@+id/scroll_down_layout"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:layout_alignParentBottom="true"
+        ><!--android:background="#000000"-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_foot"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="点击或上滑打开" />
+
+
+             <com.dany.scrolllayout.content.ContentScrollView
+                 android:id="@+id/csrollview"
+                 android:layout_width="match_parent"
+                 android:layout_height="240dp"
+                 android:layout_below="@id/text_foot"
+                 >
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="vertical"
+                     >
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="120dp"
+                         android:text="Second"
+                         android:textSize="14sp"
+                         android:gravity="center"
+                         android:background="@color/yellow"
+                         android:textColor="@color/white"
+                         />
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="120dp"
+                         android:text="Third"
+                         android:textSize="14sp"
+                         android:gravity="center"
+                         android:background="@color/red"
+                         android:textColor="@color/white"
+                         />
+
+                 </LinearLayout>
+
+             </com.dany.scrolllayout.content.ContentScrollView>
+
+        </RelativeLayout>
+
+    </com.dany.scrolllayout.ScrollLayout>
+
+
+</RelativeLayout>
