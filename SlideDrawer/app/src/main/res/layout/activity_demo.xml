@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="148.5dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="45.2dp"
-        ><!--android:background="#000000"-->
+        android:layout_marginBottom="@dimen/margin"
+        ><!--android:background="#000000"   android:layout_marginBottom="45.2dp" 55.2dp-->
 
         <RelativeLayout
             android:layout_width="match_parent"

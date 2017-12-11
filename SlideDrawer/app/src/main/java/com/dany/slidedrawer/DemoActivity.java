@@ -133,6 +133,8 @@ public class DemoActivity extends AppCompatActivity {
         ViewGroup.LayoutParams para = text_foot.getLayoutParams();
         para.height = height;
         para.width = ScreenUtil.getScreenWidth(this);
+        Log.d("dan.yyy","getScreenWidth:"+ScreenUtil.getScreenWidth(this)+
+                ",getScreenHeight:"+ScreenUtil.getScreenHeight(this));
         mExitHeiht = height;
         text_foot.setImageResource(R.mipmap.bg_1);
         Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(),R.mipmap.bg_2);
