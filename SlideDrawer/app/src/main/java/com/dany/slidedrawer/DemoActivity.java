@@ -1,14 +1,21 @@
 package com.dany.slidedrawer;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dany.scrolllayout.ScrollLayout;
@@ -17,8 +24,13 @@ import com.dany.scrolllayout.content.ContentScrollView;
 public class DemoActivity extends AppCompatActivity {
 
     private ScrollLayout mScrollLayout;
-    private TextView text_foot;
+    private ImageView text_foot;
+    private ImageView text_cont1;
+    private ImageView text_cont2;
     private ContentScrollView mCScrollView;
+    private float mCSHeight = 0;
+    private float mOpenHeight = 0;
+    private float mExitHeiht = 0;
 
     private ScrollLayout.OnScrollChangedListener mOnScrollChangedListener = new ScrollLayout.OnScrollChangedListener() {
         @Override
@@ -35,8 +47,13 @@ public class DemoActivity extends AppCompatActivity {
 
         @Override
         public void onScrollFinished(ScrollLayout.Status currentStatus) {
-            if (currentStatus.equals(ScrollLayout.Status.EXIT)) {
-                text_foot.setVisibility(View.VISIBLE);
+//            if (currentStatus.equals(ScrollLayout.Status.EXIT)) {
+//                text_foot.setVisibility(View.VISIBLE);
+//            }
+            if(mScrollLayout.getCurrentStatus() != ScrollLayout.Status.EXIT){
+                text_foot.setImageResource(R.mipmap.bg_11);
+            }else{
+                text_foot.setImageResource(R.mipmap.bg_1);
             }
         }
 
@@ -61,15 +78,22 @@ public class DemoActivity extends AppCompatActivity {
 
     private void initView() {
         mScrollLayout = (ScrollLayout) findViewById(R.id.scroll_down_layout);
-        text_foot = (TextView) findViewById(R.id.text_foot);
+        text_foot = (ImageView) findViewById(R.id.text_foot);
+        text_cont1 = (ImageView) findViewById(R.id.text_cont1);
+        text_cont2 = (ImageView) findViewById(R.id.text_cont2);
         mCScrollView = (ContentScrollView) findViewById(R.id.csrollview);
+        initIvsHeight();
+        Log.d("dan.yy","mCSHeight:"+mCSHeight+",mOpenHeight:"+mOpenHeight+"mExitHeiht:"+mExitHeiht);
 
         /**设置 setting*/
         mScrollLayout.setMinOffset(0);
 //        mScrollLayout.setMaxOffset((int) (ScreenUtil.getScreenHeight(this) * 0.5));
-        mScrollLayout.setSpecificHeight(ScreenUtil.dip2px(this, 290));
-        mScrollLayout.setMaxOffset(ScreenUtil.dip2px(this, 170));
-        mScrollLayout.setExitOffset(ScreenUtil.dip2px(this, 50));
+       /* mScrollLayout.setSpecificHeight(ScreenUtil.dip2px(this, (float) 148.5));
+        mScrollLayout.setMaxOffset(ScreenUtil.dip2px(this, 91));
+        mScrollLayout.setExitOffset(ScreenUtil.dip2px(this, (float) 15.5));*/
+        mScrollLayout.setSpecificHeight((int) mCSHeight);
+        mScrollLayout.setMaxOffset((int) mOpenHeight);
+        mScrollLayout.setExitOffset((int) mExitHeiht);
         mScrollLayout.setIsSupportExit(true);
         mScrollLayout.setAllowHorizontalScroll(true);
         mScrollLayout.setOnScrollChangedListener(mOnScrollChangedListener);
@@ -92,10 +116,50 @@ public class DemoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(mScrollLayout.getCurrentStatus() == ScrollLayout.Status.OPENED){
                     mScrollLayout.setToExit(true);
+                    text_foot.setImageResource(R.mipmap.bg_11);
                 }else{
                     mScrollLayout.setToOpen();
+                    text_foot.setImageResource(R.mipmap.bg_1);
                 }
             }
         });
+    }
+
+    private void initIvsHeight(){
+        Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(),R.mipmap.bg_1);
+        int imageWidth = bitmap1.getWidth();
+        int imageHeight = bitmap1.getHeight();
+        int height = ScreenUtil.getScreenWidth(this) * imageHeight / imageWidth;
+        ViewGroup.LayoutParams para = text_foot.getLayoutParams();
+        para.height = height;
+        para.width = ScreenUtil.getScreenWidth(this);
+        mExitHeiht = height;
+        text_foot.setImageResource(R.mipmap.bg_1);
+        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(),R.mipmap.bg_2);
+        int imageWidth2 = bitmap2.getWidth();
+        int imageHeight2 = bitmap2.getHeight();
+        int height2 = ScreenUtil.getScreenWidth(this) * imageHeight2 / imageWidth2;
+        ViewGroup.LayoutParams para2 = text_cont1.getLayoutParams();
+        para2.height = height2;
+        para2.width = ScreenUtil.getScreenWidth(this);
+        mOpenHeight = height2 + mExitHeiht;
+        text_cont1.setImageResource(R.mipmap.bg_2);
+        Bitmap bitmap3 = BitmapFactory.decodeResource(getResources(),R.mipmap.bg_3);
+        int imageWidth3 = bitmap3.getWidth();
+        int imageHeight3 = bitmap3.getHeight();
+        int height3 = ScreenUtil.getScreenWidth(this) * imageHeight3 / imageWidth3;
+        ViewGroup.LayoutParams para3 = text_cont2.getLayoutParams();
+        para3.height = height3;
+        para3.width = ScreenUtil.getScreenWidth(this);
+        mCSHeight = height3 + mOpenHeight;
+        text_cont2.setImageResource(R.mipmap.bg_3);
+        final int screenwidth = ScreenUtil.getScreenWidth(this);
+        RelativeLayout.LayoutParams llp = (RelativeLayout.LayoutParams) mScrollLayout.getLayoutParams();
+        llp.height = (int) mCSHeight;
+        llp.width = screenwidth;
+        mScrollLayout.setLayoutParams(llp);
+        bitmap1.recycle();
+        bitmap2.recycle();
+        bitmap3.recycle();
     }
 }

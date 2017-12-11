@@ -9,20 +9,20 @@
     <com.dany.scrolllayout.ScrollLayout
         android:id="@+id/scroll_down_layout"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="148.5dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="45.2dp"
         ><!--android:background="#000000"-->
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
                 android:id="@+id/text_foot"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@mipmap/bg_1"
+                android:layout_height="15.5dp"
+                android:src="@mipmap/bg_1"
                 android:clickable="true"
                 />
 
@@ -30,9 +30,9 @@
             <com.dany.scrolllayout.content.ContentScrollView
                 android:id="@+id/csrollview"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="match_parent"
                 android:layout_below="@id/text_foot"
-                >
+                ><!--133dp-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -40,20 +40,20 @@
                     android:orientation="vertical"
                     >
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/text_cont1"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:textSize="14sp"
-                        android:background="@mipmap/bg_2"
-                        android:textColor="@color/white"
+                        android:layout_height="75.5dp"
+                        android:src="@mipmap/bg_2"
+                        android:scaleType="fitXY"
                         />
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/text_cont2"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:textSize="14sp"
-                        android:background="@mipmap/bg_3"
-                        android:textColor="@color/white"
+                        android:layout_height="57.5dp"
+                        android:src="@mipmap/bg_3"
+                        android:scaleType="fitXY"
                         />
 
                 </LinearLayout>
